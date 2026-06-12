@@ -7,8 +7,7 @@ dist/
 # LeafDoc-Quell-Repo (nur Referenz, wird nicht mitversioniert)
 _leafdoc-source/
 
-# TFLite-Modelle sind zu groß für GitHub (~132 MB) – lokal aufbewahren
-public/models/
+# Android-Kopie der Modelle (werden von cap sync aus public/models/ erzeugt)
 android/app/src/main/assets/public/models/
 
 # Android build artifacts
