@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.vite/
+*.local
+.DS_Store
+
+# LeafDoc-Quell-Repo (nur Referenz, wird nicht mitversioniert)
+_leafdoc-source/
+
+# TFLite-Modelle sind zu groß für GitHub (~132 MB) – lokal aufbewahren
+public/models/
+android/app/src/main/assets/public/models/
+
+# Android build artifacts
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties

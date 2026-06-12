@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* ===== GrowMate Design Tokens — "Pixel Organic" (siehe DESIGN.md) ===== */
+@theme {
+  --color-bg0: #0c110d;
+  --color-bg1: #121a14;
+  --color-bg2: #1a241c;
+  --color-bg3: #243126;
+  --color-line: #2d3b2f;
+  --color-ink: #e9f2e6;
+  --color-ink-dim: #a3b5a4;
+  --color-ink-faint: #6b7e6d;
+  --color-accent: #9be15d;
+  --color-accent-ink: #10240a;
+  --color-leaf: #4caf50;
+  --color-water: #6ec8ff;
+  --color-nute: #c39bff;
+  --color-train: #ffb86b;
+  --color-issue: #ff8fa3;
+  --color-st-green: #58d68d;
+  --color-st-yellow: #ffd23f;
+  --color-st-orange: #ff9447;
+  --color-st-red: #ff5c5c;
+  --radius-card: 16px;
+  --radius-btn: 14px;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--color-bg0);
+  color: var(--color-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* ===== Pixel-Bausteine ===== */
+
+/* Gestufte Ecken (4px Notch) für Hero-Elemente */
+.pixel-frame {
+  clip-path: polygon(
+    0 8px, 4px 8px, 4px 4px, 8px 4px, 8px 0,
+    calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px,
+    100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%,
+    8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px)
+  );
+}
+
+.px-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-dim);
+}
+
+/* Ampel-Dot: Quadrat mit Pixel-Versatzschatten */
+.ampel-dot {
+  width: 12px;
+  height: 12px;
+  flex: none;
+  box-shadow: 2px 2px 0 rgb(0 0 0 / 0.35);
+}
+
+/* ===== Karten / Buttons ===== */
+.card {
+  background: var(--color-bg2);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.card-tap {
+  transition: transform 120ms ease;
+}
+.card-tap:active {
+  transform: scale(0.98);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: var(--radius-btn);
+  font-weight: 700;
+  font-size: 15px;
+  transition: transform 120ms ease, opacity 120ms ease;
+  user-select: none;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.4; pointer-events: none; }
+.btn-primary { background: var(--color-accent); color: var(--color-accent-ink); }
+.btn-secondary { background: var(--color-bg3); color: var(--color-ink); border: 1px solid var(--color-line); }
+.btn-ghost { background: transparent; color: var(--color-ink-dim); }
+.btn-danger { background: transparent; color: var(--color-st-red); border: 1px solid var(--color-st-red); }
+.btn-sm { height: 36px; padding: 0 14px; font-size: 13px; border-radius: 10px; }
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border-radius: 12px;
+  background: var(--color-bg3);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  font-size: 15px;
+  outline: none;
+}
+.input:focus { border-color: var(--color-accent); }
+textarea.input { height: auto; padding: 12px 14px; }
+
+select.input { appearance: none; }
+
+/* ===== Fokus & A11y ===== */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===== Animationen ===== */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.96) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+@keyframes sheet-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(120px) rotate(260deg); opacity: 0; }
+}
+
+.anim-bob { animation: bob 2.4s ease-in-out infinite; }
+.anim-pop { animation: pop-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+.anim-pulse { animation: pulse-soft 2s ease-in-out infinite; }
+.anim-sheet { animation: sheet-up 220ms cubic-bezier(0.2, 0.9, 0.3, 1) both; }
+
+.sprite-sparkle { animation: sparkle 1.8s steps(2) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-bob, .anim-pulse, .sprite-sparkle { animation: none; }
+}
+
+/* Safe-Area für Capacitor (Notch / Gesture-Bar) */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Scrollbar dezent */
+::-webkit-scrollbar { width: 0; height: 0; }

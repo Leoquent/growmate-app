@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($v = \"D:\\\\Coding\\\\GrowMate 2\\\\public\\\\vendor\"; curl.exe -sL -o \"$v\\\\tf.min.js\" \"https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js\"; curl.exe -sL -o \"$v\\\\tflite\\\\tf-tflite.min.js\" \"https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/tf-tflite.min.js\"; foreach \\($f in @\\(\"tflite_web_api_cc.js\",\"tflite_web_api_cc.wasm\",\"tflite_web_api_cc_simd.js\",\"tflite_web_api_cc_simd.wasm\",\"tflite_web_api_cc_threaded_simd.js\",\"tflite_web_api_cc_threaded_simd.wasm\",\"tflite_web_api_cc_threaded_simd.worker.js\"\\)\\) { curl.exe -sL -o \"$v\\\\tflite\\\\$f\" \"https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-tflite/dist/$f\" }; Get-ChildItem $v -Recurse -File | Select-Object @{N='Name';E={$_.FullName.Replace\\($v,''\\)}}, Length)",
+      "PowerShell($content = Get-Content \"D:\\\\Coding\\\\GrowMate 2\\\\public\\\\vendor\\\\tflite\\\\tf-tflite.min.js\" -Raw; Write-Output $content.Substring\\(1162800, 1400\\))"
+    ]
+  }
+}
